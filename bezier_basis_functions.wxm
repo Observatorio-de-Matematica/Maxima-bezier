@@ -1,0 +1,152 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: comment start ]
+https://github.com/t-o-k/Maxima-bezier/bezier_basis_functions.wxmx
+
+Copyright (c) 2020 Tor Olav Kristensen, http://subcube.com
+
+Use of this source code is governed by the GNU Lesser General Public License version 3, which can be found in the LICENSE file.
+
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load("draw")$
+load("bezier")$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+set_draw_defaults(
+    xrange = [ 0, 1 ],
+    yrange = [ 0, 1 ],
+    xlabel = "s",
+    ylabel = "",
+    grid = true
+)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+degree_s: 3$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(bf_1a(s), basis_functions_1a(degree_s, s));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw2d(
+    color = red,
+    parametric(s, bf_1a(s)[1, 1], s, 0, 1),
+    color = green,
+    parametric(s, bf_1a(s)[1, 2], s, 0, 1),
+    color = blue,
+    parametric(s, bf_1a(s)[1, 3], s, 0, 1),
+    color = magenta,
+    parametric(s, bf_1a(s)[1, 4], s, 0, 1)
+)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+set_draw_defaults(
+    xrange = [ 0, 1 ],
+    yrange = [ 0, 1 ],
+    zrange = [ 0, 1 ],
+    cbrange = [ 0, 1 ],
+    colorbox = false,
+    xu_grid = 15,
+    yv_grid = 15,
+    xlabel = "u",
+    ylabel = "v",
+    zlabel = "",
+    grid = true,
+    color = gray,
+    wired_surface = true,
+    surface_hide = false,
+    enhanced3d = true,
+    view = [ 80, 10 ]
+)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+degree_u: 2$
+degree_v: 2$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(bf_2a(u, v), basis_functions_2a(degree_u, degree_v, u, v));
+
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bf_2a(u, v)[2, 1];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw3d(
+    title = "Basis function [2, 1]",
+    parametric_surface(
+        u,
+        v,
+        bf_2a(u, v)[2, 1],
+        u, 0, 1,
+        v, 0, 1
+    )
+)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bf_2a(u, v)[2, 2];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw3d(
+    title = "Basis function [2, 2]",
+    parametric_surface(
+        u,
+        v,
+        bf_2a(u, v)[2, 2],
+        u, 0, 1,
+        v, 0, 1
+    )
+)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+bf_2a(u, v)[3, 3];
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxdraw3d(
+    title = "Basis function [3, 3]",
+    parametric_surface(
+        u,
+        v,
+        bf_2a(u, v)[3, 3],
+        u, 0, 1,
+        v, 0, 1
+    )
+);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$

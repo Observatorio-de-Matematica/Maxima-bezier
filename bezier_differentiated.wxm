@@ -1,0 +1,166 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: comment start ]
+https://github.com/t-o-k/Maxima-bezier/bezier_differentiated.wxmx
+
+Copyright (c) 2020 Tor Olav Kristensen, http://subcube.com
+
+Use of this source code is governed by the GNU Lesser General Public License version 3, which can be found in the LICENSE file.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load("bezier")$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(
+    g(u, v),
+    bezier_function_2a(
+        matrix(
+            [ 4, 2, 3, 5 ],
+            [ 5, 3, 2, 4 ],
+            [ 2, 5, 4, 3 ],
+            [ 3, 4, 5, 2 ]
+        ),
+        u, v
+    )
+)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(der_u_g(u, v), diff(g(u, v), u))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(der_v_g(u, v), diff(g(u, v), v))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(der2_u_g(u, v), diff(g(u, v), u, 2))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(der2_v_g(u, v), diff(g(u, v), v, 2))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(der_u_der_v_g(u, v), diff(diff(g(u, v), u), v))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(der_v_der_u_g(u, v), diff(diff(g(u, v), v), u))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(g(u, v));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(der_u_g(u, v));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(der_v_g(u, v));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(der2_u_g(u, v));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(der2_v_g(u, v));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(der_u_der_v_g(u, v));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(der_v_der_u_g(u, v));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(
+    f(s, t),
+    bezier_function_2a(
+        matrix(
+            [ a_11, a_12, a_13, a_14 ],
+            [ a_21, a_22, a_23, a_24 ],
+            [ a_31, a_32, a_33, a_34 ]
+        ),
+        s, t
+    )
+)$
+
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(f(s, t));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(f(0, 0));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(f(0, 1));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(f(1, 0));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(f(1, 1));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(f(u, 0));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(f(u, 1));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(f(0, v));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(f(1, v));
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$

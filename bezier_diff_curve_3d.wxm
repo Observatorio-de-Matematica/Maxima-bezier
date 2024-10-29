@@ -1,0 +1,120 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: comment start ]
+https://github.com/t-o-k/Maxima-bezier/bezier_diff_curve_3d.wxmx
+
+Copyright (c) 2020 Tor Olav Kristensen, http://subcube.com
+
+Use of this source code is governed by the GNU Lesser General Public License version 3, which can be found in the LICENSE file.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load("draw")$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load("bezier")$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(
+    curve_x(s),
+    bezier_function_1a(matrix([ +0, +2, +6, +5 ]), s)
+)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(
+    curve_y(s),
+    bezier_function_1a(matrix([ +2, -1, +6, +0 ]), s)
+)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(
+    curve_z(s),
+    bezier_function_1a(matrix([ +1, -3, +2, +0 ]), s)
+)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(curve_x(s));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(curve_y(s));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(curve_z(s));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(
+    diff_curve_x(s),
+    diff(curve_x(s), s)
+)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(
+    diff_curve_y(s),
+    diff(curve_y(s), s)
+)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(
+    diff_curve_z(s),
+    diff(curve_z(s), s)
+)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(diff_curve_x(s));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(diff_curve_y(s));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(diff_curve_z(s));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d(
+    [
+        diff_curve_x(s),
+        diff_curve_y(s),
+        diff_curve_z(s)
+    ],
+    [ s, 0, 1 ],
+    [ t, 0, 1 ] 
+);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$

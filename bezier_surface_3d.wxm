@@ -1,0 +1,109 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: comment start ]
+https://github.com/t-o-k/Maxima-bezier/bezier_surface_3d.wxmx
+
+Copyright (c) 2020 Tor Olav Kristensen, http://subcube.com
+
+Use of this source code is governed by the GNU Lesser General Public License version 3, which can be found in the LICENSE file.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load("draw")$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load("bezier")$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+points_x:
+    matrix(
+        [  0.0,  1.0, 2.0,  3.0 ],
+        [  0.0,  1.0, 2.0,  4.0 ],
+        [  0.0,  1.0, 2.0,  2.5 ],
+        [  0.0,  1.0, 2.0,  3.0 ]
+    )
+$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+points_y:
+    matrix(
+        [  0.0,  0.0,  1.0,  0.0 ],
+        [  1.0,  1.0,  2.0,  1.0 ],
+        [  2.0,  2.0,  3.0,  2.0 ],
+        [  3.0,  3.0,  5.0,  3.0 ]
+    )
+$
+
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+points_z:
+    matrix(
+        [  2.0,  0.0,  0.0, -3.0 ],
+        [ -2.0, -3.0, -2.0,  3.0 ],
+        [  0.0, -4.0,  0.0,  2.0 ],
+        [  2.0,  0.0,  0.0, -3.0 ]
+    )
+$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(surface_x(u, v), bezier_function_2a(points_x, u, v))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(surface_y(u, v), bezier_function_2a(points_y, u, v))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(surface_z(u, v), bezier_function_2a(points_z, u, v))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(surface_x(u, v));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(surface_y(u, v));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+expand(surface_z(u, v));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d(
+    [
+        surface_x(u, v),
+        surface_y(u, v),
+        surface_z(u, v)
+    ],
+    [ u, 0, 1 ],
+    [ v, 0, 1 ]
+);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$

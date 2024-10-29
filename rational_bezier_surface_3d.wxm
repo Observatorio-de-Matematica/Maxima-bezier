@@ -1,0 +1,155 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: comment start ]
+https://github.com/t-o-k/Maxima-bezier/rational_bezier_surface_3d.wxmx
+
+Copyright (c) 2020 Tor Olav Kristensen, http://subcube.com
+
+Use of this source code is governed by the GNU Lesser General Public License version 3, which can be found in the LICENSE file.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load("draw")$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load("bezier")$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+tau: 2*%pi$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+angle: tau/4;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+w: matrix([ 1, cos(angle/2), 1 ]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+weights: transpose(w).w;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+The 9 points; <x, y, z> in the control grid:
+
+< 0, +Rmaj+Rmin,          0>   <+Rmaj+Rmin, +Rmaj+Rmin,         0>   <+Rmaj+Rmin, 0,          0>
+< 0, +Rmaj+Rmin, +Rmin>   <+Rmaj+Rmin, +Rmaj+Rmin, +Rmin>   <+Rmaj+Rmin, 0, +Rmin>
+< 0, +Rmaj           , +Rmin>   <+Rmaj          ,  +Rmaj          , +Rmin>   <+Rmaj           , 0, +Rmin>
+
+This will create a surface that is 1/16 of the surface of a torus, or 1/8 of the surface of a sphere if Rmaj is 0.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+points_x:
+    matrix(
+        [  0, +Rmaj+Rmin, +Rmaj+Rmin ],
+        [  0, +Rmaj+Rmin, +Rmaj+Rmin ],
+        [  0, +Rmaj           , +Rmaj            ]
+    )
+;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+points_y:
+    matrix(
+        [ +Rmaj+Rmin, +Rmaj+Rmin,  0 ],
+        [ +Rmaj+Rmin, +Rmaj+Rmin,  0 ],
+        [ +Rmaj           , +Rmaj           ,  0 ]
+    )
+;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+points_z:
+    matrix(
+        [          0,               0,              0 ],
+        [ +Rmin,      +Rmin,      +Rmin ],
+        [ +Rmin,      +Rmin,      +Rmin ]
+    )
+;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(f_x(u, v), rational_bezier_function_2a(points_x, weights, u, v));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(f_y(u, v), rational_bezier_function_2a(points_y, weights, u, v));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+define(f_z(u, v), rational_bezier_function_2a(points_z, weights, u, v));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Rmaj: 0$
+Rmin: 1$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f_x(u, v);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f_y(u, v);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+f_z(u, v);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d(
+    [ f_x(u, v), f_y(u, v), f_z(u, v) ],
+    [ u, 0, 1 ],
+    [ v, 0, 1 ],
+    same_xyz
+);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Rmaj: 2$
+Rmin: 1$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+wxplot3d(
+    [ f_x(u, v), f_y(u, v), f_z(u, v) ],
+    [ u, 0, 1 ],
+    [ v, 0, 1 ],
+    same_xyz
+);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$
